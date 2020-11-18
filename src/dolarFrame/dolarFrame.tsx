@@ -19,6 +19,16 @@ interface Cotacao{
     create_date: string,
 }
 
+
+/*class coinFrame extends React.Component{
+    const [valor:number,setValor:Function] = useState<Cotacao|null>()
+
+
+    render(){
+        return <b></b>
+    }
+}*/
+
 function DolarFrame(): JSX.Element {
 
     const [valor,setValor] = useState<Cotacao|null>()
@@ -36,7 +46,7 @@ function DolarFrame(): JSX.Element {
 
     return (
         <div className="DolarFrame">
-            <h2>{valor?.name}: ${formatNumber(2, valor?.high || 0)}</h2>
+            <h2>{valor?.name}: ${formatNumber(2, valor?.ask || 0)}</h2>
         </div>
     )
 }

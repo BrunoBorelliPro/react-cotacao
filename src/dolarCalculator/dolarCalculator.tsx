@@ -2,6 +2,8 @@ import React from 'react'
 import api from '../axios/api'
 import {useState, useEffect} from 'react'
 import formatNumber from '../service/formatNumbers'
+import { InputAdornment, Input } from '@material-ui/core';
+import './dolarCalculator.css'
 
 
 interface Cotacao{
@@ -18,7 +20,7 @@ interface Cotacao{
     create_date: string,
 }
 
-function DolarCalculator(){
+function DolarCalculator(): JSX.Element{
 
     const [moedas, setMoedas] = useState<string[]>([])
     const [moedasData, setMoedasData] = useState<{[key:string]:Cotacao}>()
@@ -37,27 +39,32 @@ function DolarCalculator(){
     },[])
 
     return(
-        <div>
-            <select name="moeda" id="moeda" onChange={(event)=>{
-                const moeda_selecionda = event.target.value
-                setMoedaSelecionada(moedasData![moeda_selecionda])
-            }}>
-            {moedas.map((moeda)=>{
-                return(<option value={moeda} key={moeda}>{moeda}</option>)
-            })}
-            </select>
-            <input type="number" onChange={
-                (event)=>{
-                    const valor = event.target.value
-                    setValorEstrangeiro(valor)
-                }
-            }></input>
-        <p>Valor em real:{
-            moedaSelecionada && valorEstrangeiro ? formatNumber(2,Number(valorEstrangeiro)*Number(moedaSelecionada?.high)) : ""
-            
-        
-        }</p>
+        <div className="container">
+            <div className="box">
+
+                <p className="ValorReal">R${
+                moedaSelecionada && valorEstrangeiro ? formatNumber(2,Number(valorEstrangeiro)*Number(moedaSelecionada?.ask)) : "0,00"
+                }</p>
+                
+                <input className="CalculatorInput" type="number" onChange={
+                    (event)=>{
+                        const valor = event.target.value
+                        setValorEstrangeiro(valor)
+                    }
+                }></input>
+
+                <select className="SelectMoedas" name="moeda" id="moeda" onChange={(event)=>{
+                    const moeda_selecionda = event.target.value
+                    setMoedaSelecionada(moedasData![moeda_selecionda])
+                    }}>
+                    {moedas.map((moeda)=>{
+                        return(<option value={moeda} key={moeda}>{moeda}</option>)
+                    })}
+                </select>
+                    
+            </div>
         </div>
+        
     )
 }
 
