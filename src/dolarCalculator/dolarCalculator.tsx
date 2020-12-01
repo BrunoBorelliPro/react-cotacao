@@ -41,11 +41,11 @@ function DolarCalculator(): JSX.Element{
     return(
         <div className="container">
             <div className="box">
-
-                <p className="ValorReal">R${
-                moedaSelecionada && valorEstrangeiro ? formatNumber(2,Number(valorEstrangeiro)*Number(moedaSelecionada?.ask)) : "0,00"
-                }</p>
-                
+                <div className="ValorRealBox">
+                    <p className="ValorReal">R${
+                    moedaSelecionada && valorEstrangeiro ? formatNumber(2,Number(valorEstrangeiro)*Number(moedaSelecionada?.ask)) : "0,00"
+                    }</p>
+                </div>
                 <input className="CalculatorInput" type="number" onChange={
                     (event)=>{
                         const valor = event.target.value
