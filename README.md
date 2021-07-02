@@ -1,3 +1,3 @@
 # react-cotacao
-Uma aplicação simples feita com react que consome uma api para exibir dados sobre a cotação do dólar e outras moedas.
+Uma aplicação simples feita com React que consome uma API para converter diversas moedas para real.
 ![](./react-cotacao.png)
